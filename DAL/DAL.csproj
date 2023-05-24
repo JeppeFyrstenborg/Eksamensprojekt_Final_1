@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202304251603044_allClasses.designer.cs">
       <DependentUpon>202304251603044_allClasses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305240652224_chatsOnUser.cs" />
+    <Compile Include="Migrations\202305240652224_chatsOnUser.designer.cs">
+      <DependentUpon>202305240652224_chatsOnUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ChatRepository.cs" />
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304251603044_allClasses.resx">
       <DependentUpon>202304251603044_allClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305240652224_chatsOnUser.resx">
+      <DependentUpon>202305240652224_chatsOnUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

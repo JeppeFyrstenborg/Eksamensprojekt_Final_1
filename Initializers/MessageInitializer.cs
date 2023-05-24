@@ -18,18 +18,32 @@ namespace Initializers
 
             Message message1 = new Message
             {
-                MessageText = "Hejsa 1",
+                MessageText = "Hello",
+                User = context.Users.FirstOrDefault()
+            };
+
+            Message message3 = new Message
+            {
+                MessageText = "Nice ny chat :D",
                 User = context.Users.FirstOrDefault()
             };
 
             Message message2 = new Message
             {
-                MessageText = "Hejsa 2",
+                MessageText = "Hello!",
+                User = context.Users.OrderBy(x => x.UserId).Skip(1).FirstOrDefault()
+            };
+
+            Message message4 = new Message
+            {
+                MessageText = "E9",
                 User = context.Users.OrderBy(x => x.UserId).Skip(1).FirstOrDefault()
             };
 
             context.Messages.Add(message1);
             context.Messages.Add(message2);
+            context.Messages.Add(message3);
+            context.Messages.Add(message4);
 
             context.SaveChanges();
         }

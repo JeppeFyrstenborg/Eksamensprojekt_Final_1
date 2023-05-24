@@ -17,13 +17,18 @@ namespace Initializers
             //    var messageInitializer = new MessageInitializer();
             //    messageInitializer.SeedMessages(context);
             //}
-            Chat Chat1 = new Chat();
+            Chat Chat1 = new Chat
+            {
+                ChatName = "Coozy Chat"
+            };
 
             Chat1.Users.Add(context.Users.FirstOrDefault());
             Chat1.Users.Add(context.Users.OrderBy(x => x.UserId).Skip(1).FirstOrDefault());
 
             Chat1.Messages.Add(context.Messages.FirstOrDefault());
             Chat1.Messages.Add(context.Messages.OrderBy(x => x.MessageId).Skip(1).FirstOrDefault());
+            Chat1.Messages.Add(context.Messages.OrderBy(x => x.MessageId).Skip(2).FirstOrDefault());
+            Chat1.Messages.Add(context.Messages.OrderBy(x => x.MessageId).Skip(3).FirstOrDefault());
 
             context.Chats.Add(Chat1);
 

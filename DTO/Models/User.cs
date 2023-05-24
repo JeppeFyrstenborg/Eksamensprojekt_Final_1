@@ -14,7 +14,10 @@ namespace DTO.Models
 
         public string Email { get; set; }
 
+        public List<Chat> Chats { get; set; }
         public User() { }
+
+
 
         public User(string username, string email)
         {
