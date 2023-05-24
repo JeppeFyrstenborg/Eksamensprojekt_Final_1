@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="grid" style="margin-bottom: 3px;">
+        <div class="column" style="width: 33.33%;"></div>
+        <div class="column" style="width: 33.33%;"></div>
+        <div class="column" style="width: 33.33%;"></div>
+
+        <div class="row" style="height: auto;">
+            <div class="cell" style="grid-column: 1 / span 3; margin: 20px 0; text-align: center;">
+                <h1 style="font-size: 40px; color: #fdc401; font-family: 'Ink Free'; font-weight: bold;">Sign in to your Account</h1>
+            </div>
+        </div>
+
+        <div class="row" style="height: auto;">
+            <div class="cell" style="grid-column: 2; grid-row: 2; margin: 20px;">
+                <h2 style="font-size: 20px; color: #fdc401; margin-bottom: 5px; font-family: 'Ink Free'; font-weight: bold;">Email Address</h2>
+                <input type="text" name="EmailTextBox" style="font-size: 18px; background-color: #fdc401; border: none; padding: 12px 7px; color: #FF387752; font-family: 'Ink Free'; font-weight: bold;">
+            </div>
+        </div>
+
+        <div class="row" style="height: auto;">
+            <div class="cell" style="grid-column: 2; grid-row: 3; margin: 20px;">
+                <h2 style="font-size: 20px; color: #fdc401; margin-bottom: 5px; font-family: 'Ink Free'; font-weight: bold;">Password</h2>
+                <input type="password" name="PasswordBox" style="font-size: 18px; background-color: #fdc401; border: none; padding: 12px 7px; color: #FF387752; font-family: 'Ink Free'; font-weight: bold;">
+            </div>
+        </div>
+
+        <div class="row" style="height: auto;">
+            <div class="cell" style="grid-column: 2; grid-row: 4; margin: 20px;">
+                <input type="checkbox" name="RememberMe" style="font-size: 20px; background-color: #fdc401; color: #fdc401; margin-bottom: 5px; font-family: 'Ink Free'; font-weight: bold;">
+                <label for="RememberMe">Remember Me</label>
+            </div>
+        </div>
+
+        <div class="row" style="height: auto;">
+            <div class="cell" style="grid-column: 2; grid-row: 5; margin: 20px;">
+                <button type="button" style="background-color: #fdc401; color: #FF387752; padding: 20px 7px; font-family: 'Ink Free'; font-weight: bold; font-size: 24px;" onclick="SuccessfulLogin()">Sign In</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

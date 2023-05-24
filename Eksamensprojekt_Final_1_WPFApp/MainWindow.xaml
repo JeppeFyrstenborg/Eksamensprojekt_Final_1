@@ -1,0 +1,33 @@
+﻿<Window x:Class="Eksamensprojekt_Final_1_WPFApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPFApp"
+        xmlns:vm="clr-namespace:Eksamensprojekt_Final_1_WPFApp.ViewModels"
+        xmlns:views="clr-namespace:Eksamensprojekt_Final_1_WPFApp.Views"
+        xmlns:userControls="clr-namespace:MyCustomControlsWPF;assembly=MyCustomControlsWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800"
+        Background="#FF387752">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+            <views:LoginView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+            <views:HomeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ChatViewModel}">
+            <views:ChatView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateChatViewModel}">
+            <views:CreateChatView />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Frame x:Name="ContentFrame" Content="{Binding CurrentViewModel}" NavigationUIVisibility="Hidden" Grid.Column="0"/>
+    </Grid>
+</Window>

@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Eksamensprojekt_Final_1_WPFApp.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPFApp.Views"
+             xmlns:vm="clr-namespace:Eksamensprojekt_Final_1_WPFApp.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="d:DesignInstance Type=vm:HomeViewModel" d:DesignWidth="800" Height="530">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1"
+              Margin="10"
+              >
+            <Border Style="{StaticResource CustomBorderStyle}" 
+                    Margin="65,360,65,10"
+                    Padding="2" MaxHeight="70">
+                <Button 
+                x:Name="button"
+                Style="{StaticResource CustomButtonStyle}"
+                Content="New Chat"
+                FontSize="36"
+                Height="60"
+                    Command="{Binding GoToCreateChatCommand}"/>
+            </Border>
+        </Grid>
+        <ListBox Style="{StaticResource CustomListBoxStyle}"
+                 Margin="0,124,0,0"
+                 Grid.Column="1" 
+                 HorizontalAlignment="Center" 
+                 Height="226" 
+                 VerticalAlignment="Top" 
+                 Width="344" 
+                 ItemsSource="{Binding Chats}"
+                 MouseDoubleClick="EnterChat_DoubleClick"
+                 SelectedItem="{Binding SelectedChat, Mode=TwoWay}">
+        </ListBox>
+        <Image Source="pack://application:,,,/Resources/chat_image.jpg" 
+               Stretch="Uniform" 
+               HorizontalAlignment="Center" 
+               Height="227"  
+               VerticalAlignment="Top" 
+               Width="340" Margin="0,124,0,0"/>
+        <Label Content="ChattyVerse"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Grid.ColumnSpan="2" 
+               Height="119" 
+               Margin="30,0,0,0" 
+               VerticalAlignment="Top" 
+               Width="742" 
+               FontFamily="Ink Free" 
+               FontWeight="Bold" 
+               FontSize="82" 
+               HorizontalAlignment="Left"
+               Foreground="#fdc401"/>
+    </Grid>
+</UserControl>

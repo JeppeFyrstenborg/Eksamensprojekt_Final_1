@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Eksamensprojekt_Final_1_WPFApp.Views.ChatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPFApp.Views"
+             xmlns:userControls="clr-namespace:MyCustomControlsWPF;assembly=MyCustomControlsWPF"
+             xmlns:vm="clr-namespace:Eksamensprojekt_Final_1_WPFApp.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:ChatViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Background="Transparent" BorderThickness="0" Command="{Binding GoBackToHomeCommand}"
+                    Width="30" Height="30" Grid.Column="0" Margin="10" FontSize="26" >
+                <Viewbox Stretch="Uniform">
+                    <Canvas Width="20" Height="20">
+                        <Path Name="ArrowPath" Data="M 5,10 L 15,0 M 5,10 L 15,20" Stroke="#fdc401" StrokeThickness="2" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="textBoxChatName" Text="{Binding Chat.ChatName}" Margin="10" FontSize="26" 
+                               Foreground="#fdc401"  FontFamily="Ink Free" Background="Transparent"
+                               FontWeight="Bold" BorderThickness="0" IsReadOnly="true" 
+                               LostFocus="TextBoxChatNameLostFocus" TouchEnter="TextBoxChatNameLostFocus"/>
+                    <Button Content="🖋️"  Margin="10" FontSize="20" Foreground="#fdc401" 
+                            FontFamily="Ink Free" FontWeight="Bold" Background="Transparent"
+                            BorderThickness="0" Click="EditChatname"/>
+                </StackPanel>
+            </Grid>
+
+            <Button Background="Transparent" BorderThickness="0" Width="30" Height="30" Grid.Column="2"
+                    Margin="10" Click="DeleteChatClick">
+                <Viewbox Stretch="Uniform">
+                    <Canvas Width="20" Height="20">
+                        <Path Data="M 0,0 L 20,20 M 20,0 L 0,20" Stroke="#fdc401" StrokeThickness="2" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Background="#fff" 
+                      x:Name="ScrollViewMessages">
+            <StackPanel Name="MessagesStackPanel">
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource CustomBorderStyle}" Margin="10">
+                <Grid>
+                    <TextBox Style="{StaticResource CustomTextBoxStyle}"
+                        x:Name="txtInputMessage" VerticalContentAlignment="Center"
+                     FontSize="16"
+                     TextChanged="TxtInputTextChanged"
+                     Text="{Binding MessageText}"/>
+                    <TextBlock x:Name="tbPlaceholder" Text="Type message..." FontSize="16" Margin="5" Padding="12,7" Foreground="#FF387752"  
+                       FontFamily="Ink Free" FontWeight="Bold" VerticalAlignment="Center" Opacity="0.5"
+                       Panel.ZIndex="-1"/>
+                    <Button x:Name="btnClear" Width="30" HorizontalAlignment="Right" Margin="3" Content="✖️" FontSize="14" 
+                    Background="Transparent" BorderThickness="0" Foreground="#FF387752"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="BtnClearClick"
+                    >
+                    </Button>
+                </Grid>
+            </Border>
+
+            <Grid  Grid.Column="1" Margin="10">
+                <Border Style="{StaticResource CustomBorderStyle}">
+                    <Button 
+                            Style="{StaticResource CustomButtonStyle}"
+                            Name="SendButton" 
+                            Content="Send"
+                            Margin="10"
+                            FontSize="20"
+                            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                            Command="{Binding SendMessageCommand}"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
