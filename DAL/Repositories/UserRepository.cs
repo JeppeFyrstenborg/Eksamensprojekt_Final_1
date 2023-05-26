@@ -35,5 +35,33 @@ namespace DAL.Repositories
                 return db.Users.ToList();
             }
         }
+
+        public void UpdateUser(string email, string username, int userID)
+        {
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                User userToUpdate = db.Users.FirstOrDefault(u => u.UserId == userID);
+                userToUpdate.Email = email;
+                userToUpdate.Username = username;
+                db.SaveChanges();
+            }
+        }
+
+        public int CreateNewUser(string username, string email)
+        {
+            User tempUser = new User()
+            {
+                Username = username,
+                Email = email
+            };
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Users.Add(tempUser);
+                db.SaveChanges();
+
+                return db.Users.FirstOrDefault(u => u.Username == username && u.Email == email).UserId;
+            }
+        }
     }
 }

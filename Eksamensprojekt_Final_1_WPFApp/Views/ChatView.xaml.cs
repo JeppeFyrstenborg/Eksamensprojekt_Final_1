@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Eksamensprojekt_Final_1_WPFApp.Views
 {
@@ -109,6 +110,20 @@ namespace Eksamensprojekt_Final_1_WPFApp.Views
             textBoxChatName.SelectAll();
         }
 
+
+        private void ChangeNameOfChatKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                textBoxChatName.IsReadOnly = true;
+                if (DataContext is ChatViewModel chatViewModel)
+                {
+                    chatViewModel.Chat.ChatName = textBoxChatName.Text;
+                    chatViewModel.UpdateChatCommand.Execute(null);
+                    textBoxChatName.Text = chatViewModel.Chat.ChatName;
+                }
+            }
+        }
         private void TextBoxChatNameLostFocus(object sender, RoutedEventArgs e)
         {
 

@@ -57,5 +57,15 @@ namespace DAL.Repositories
                     .MessageText = messageText;
             }
         }
+
+        public List<Message> GetMessagesForUserId(int userId)
+        {
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                return db.Messages
+                            .Where(m => m.User.UserId == userId)
+                            .ToList();
+            }
+        }
     }
 }

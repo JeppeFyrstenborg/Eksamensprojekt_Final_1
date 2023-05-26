@@ -23,7 +23,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Background="Transparent" BorderThickness="0" Command="{Binding GoBackToHomeCommand}"
-                    Width="30" Height="30" Grid.Column="0" Margin="10" FontSize="26" >
+                    Width="30" Height="30" Grid.Column="0" Margin="10" FontSize="26" 
+                    Style="{StaticResource CustomButtonStyle}">
                 <Viewbox Stretch="Uniform">
                     <Canvas Width="20" Height="20">
                         <Path Name="ArrowPath" Data="M 5,10 L 15,0 M 5,10 L 15,20" Stroke="#fdc401" StrokeThickness="2" />
@@ -35,15 +36,18 @@
                     <TextBox x:Name="textBoxChatName" Text="{Binding Chat.ChatName}" Margin="10" FontSize="26" 
                                Foreground="#fdc401"  FontFamily="Ink Free" Background="Transparent"
                                FontWeight="Bold" BorderThickness="0" IsReadOnly="true" 
-                               LostFocus="TextBoxChatNameLostFocus" TouchEnter="TextBoxChatNameLostFocus"/>
-                    <Button Content="🖋️"  Margin="10" FontSize="20" Foreground="#fdc401" 
-                            FontFamily="Ink Free" FontWeight="Bold" Background="Transparent"
-                            BorderThickness="0" Click="EditChatname"/>
+                               LostFocus="TextBoxChatNameLostFocus"
+                               KeyDown="ChangeNameOfChatKeyDown"/>
+                    <Button Content="🖋️"  Margin="10" FontSize="20"
+                            Background="Transparent" Foreground="#fdc401" 
+                            BorderThickness="0" Click="EditChatname"
+                            Style="{StaticResource CustomButtonStyle}"/>
                 </StackPanel>
             </Grid>
 
             <Button Background="Transparent" BorderThickness="0" Width="30" Height="30" Grid.Column="2"
-                    Margin="10" Click="DeleteChatClick">
+                    Margin="10" Click="DeleteChatClick"
+                    Style="{StaticResource CustomButtonStyle}">
                 <Viewbox Stretch="Uniform">
                     <Canvas Width="20" Height="20">
                         <Path Data="M 0,0 L 20,20 M 20,0 L 0,20" Stroke="#fdc401" StrokeThickness="2" />
@@ -67,16 +71,22 @@
             <Border Grid.Column="0" Style="{StaticResource CustomBorderStyle}" Margin="10">
                 <Grid>
                     <TextBox Style="{StaticResource CustomTextBoxStyle}"
-                        x:Name="txtInputMessage" VerticalContentAlignment="Center"
-                     FontSize="16"
-                     TextChanged="TxtInputTextChanged"
-                     Text="{Binding MessageText}"/>
-                    <TextBlock x:Name="tbPlaceholder" Text="Type message..." FontSize="16" Margin="5" Padding="12,7" Foreground="#FF387752"  
-                       FontFamily="Ink Free" FontWeight="Bold" VerticalAlignment="Center" Opacity="0.5"
-                       Panel.ZIndex="-1"/>
-                    <Button x:Name="btnClear" Width="30" HorizontalAlignment="Right" Margin="3" Content="✖️" FontSize="14" 
-                    Background="Transparent" BorderThickness="0" Foreground="#FF387752"
-                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="BtnClearClick"
+                            x:Name="txtInputMessage" VerticalContentAlignment="Center"
+                            FontSize="16"
+                            TextChanged="TxtInputTextChanged"
+                            Text="{Binding MessageText, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding SendMessageCommand}"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <TextBlock x:Name="tbPlaceholder" Text="Skriv besked..." FontSize="16" Margin="5" Padding="12,7" Foreground="#FF387752"  
+                            FontFamily="Ink Free" FontWeight="Bold" VerticalAlignment="Center" Opacity="0.5"
+                            Panel.ZIndex="-1"/>
+                    <Button x:Name="btnClear" Width="30" HorizontalAlignment="Right" Margin="3" 
+                            Content="✖️" FontSize="14" 
+                            Background="Transparent" BorderThickness="0" Foreground="#FF387752"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="BtnClearClick"
+                            Style="{StaticResource CustomButtonStyle}"
                     >
                     </Button>
                 </Grid>

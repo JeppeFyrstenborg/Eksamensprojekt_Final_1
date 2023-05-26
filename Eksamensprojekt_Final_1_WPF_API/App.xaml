@@ -1,7 +1,7 @@
-﻿<Application x:Class="Eksamensprojekt_Final_1_WPFApp.App"
+﻿<Application x:Class="Eksamensprojekt_Final_1_WPF_API.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPFApp"
+             xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPF_API"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="ListBox" x:Key="CustomListBoxStyle">

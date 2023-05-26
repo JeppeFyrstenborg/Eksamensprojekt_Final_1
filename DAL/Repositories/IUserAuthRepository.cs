@@ -16,5 +16,7 @@ namespace DAL.Repositories
 
         void SetSaltForUserId(int userId);
 
+        void CreateNewUserAuthForUserId(int userId, string hashedPassword, string salt);
+
     }
 }

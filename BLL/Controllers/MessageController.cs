@@ -23,6 +23,9 @@ namespace BLL.Controllers
             return _messageRepository.GetAllMessages();
         }
 
-
+        public List<Message> GetMessagesForUserId(int userId)
+        {
+            return _messageRepository.GetMessagesForUserId(userId);
+        }
     }
 }

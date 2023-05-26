@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCustomControlsWPF", "MyCu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eksamensprojekt_Final_1_WebAPI", "Eksamensprojekt_Final_1_WebAPI\Eksamensprojekt_Final_1_WebAPI.csproj", "{74841729-4D0C-424F-B4C4-FAF3AC476092}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eksamensprojekt_Final_1_WPF_API", "Eksamensprojekt_Final_1_WPF_API\Eksamensprojekt_Final_1_WPF_API.csproj", "{5077479A-7D3F-4A8B-A6D4-1A48595FCF86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{74841729-4D0C-424F-B4C4-FAF3AC476092}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74841729-4D0C-424F-B4C4-FAF3AC476092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74841729-4D0C-424F-B4C4-FAF3AC476092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5077479A-7D3F-4A8B-A6D4-1A48595FCF86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5077479A-7D3F-4A8B-A6D4-1A48595FCF86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5077479A-7D3F-4A8B-A6D4-1A48595FCF86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5077479A-7D3F-4A8B-A6D4-1A48595FCF86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

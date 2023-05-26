@@ -59,6 +59,33 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             }
         }
 
+        private IRelayCommand _goToEditUserCommand;
+
+        public IRelayCommand GoToEditUserCommand
+        {
+            get
+            {
+                if (_goToEditUserCommand == null)
+                {
+                    _goToEditUserCommand = new RelayCommand(GoToEditUser);
+                }
+                return _goToEditUserCommand;
+            }
+        }
+
+        private IRelayCommand _logOutCommand;
+
+        public IRelayCommand LogOutCommand
+        {
+            get
+            {
+                if (_logOutCommand == null)
+                {
+                    _logOutCommand = new RelayCommand(LogOut);
+                }
+                return _logOutCommand;
+            }
+        }
 
         private User _user;
 
@@ -69,6 +96,7 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             { 
                 _user = value;
                 OnPropertyChanged("User");
+                App.CreateChatViewModel.UpdateAllUsers();
                 GetChatsFromDbForUser();
             }
         }
@@ -104,7 +132,7 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             _chatController = new ChatController(new ChatRepository());
         }
 
-        private void GetChatsFromDbForUser()
+        public void GetChatsFromDbForUser()
         {
             if (User != null)
             {
@@ -121,10 +149,23 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             App.MainViewModel.CurrentViewModel = App.ChatViewModel;
         }
 
+        private bool CanGoToEditUser()
+            => User != null;
+
+        public void GoToEditUser()
+        {
+            App.MainViewModel.CurrentViewModel = new EditUserViewModel(User);
+        }
+
         public void GoToCreateChat()
         {
             App.MainViewModel.CurrentViewModel = App.CreateChatViewModel;
             App.CreateChatViewModel.UpdateAllUsers();
+        }
+
+        public void LogOut()
+        {
+            App.LogOut();
         }
 
         protected void OnPropertyChanged(string propertyName)

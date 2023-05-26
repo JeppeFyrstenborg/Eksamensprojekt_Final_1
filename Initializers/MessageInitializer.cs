@@ -10,12 +10,6 @@ namespace Initializers
         protected override void Seed(DatabaseContext context)
         {
 
-            //if (context.Users.FirstOrDefault() == null)
-            //{
-            //    var userInitializer = new UserInitializer();
-            //    userInitializer.SeedUsers(context);
-            //}
-
             Message message1 = new Message
             {
                 MessageText = "Hello",

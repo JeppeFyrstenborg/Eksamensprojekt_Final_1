@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.Models
+namespace Eksamensprojekt_Final_1_WPF_API.Models
 {
     public class User
     {

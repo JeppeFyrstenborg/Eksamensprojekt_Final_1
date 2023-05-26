@@ -14,24 +14,40 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Column="0" Style="{StaticResource CustomBorderStyle}" Margin="35,120" Padding="2">
-            <ListBox
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0"
+                    Width="30" Height="30" Grid.Column="0" Margin="10" FontSize="26" 
+                    Style="{StaticResource CustomButtonStyle}"
+                    Command="{Binding GoBackToHomeCommand}">
+                <Viewbox Stretch="Uniform">
+                    <Canvas Width="20" Height="20">
+                        <Path Name="ArrowPath" Data="M 5,10 L 15,0 M 5,10 L 15,20" Stroke="#fdc401" StrokeThickness="2" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <Border Grid.Row="1" Style="{StaticResource CustomBorderStyle}" Margin="35,80" Padding="2">
+                <ListBox
                 Margin="2"
                  Style="{StaticResource CustomListBoxStyle}" 
                  HorizontalAlignment="Stretch" 
                  VerticalAlignment="Stretch" 
-                 ItemsSource="{Binding AllUsers}"
+                 ItemsSource="{Binding AllUsersWithoutLoggedInUser}"
                  SelectedItem="{Binding SelectedUser, Mode=TwoWay}"/>
-        </Border>
+            </Border>
+        </Grid>
 
         <Grid Grid.Column="1" 
-              Margin="35,120"
+              Margin="35,150"
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Label
                 Grid.Row="0"
@@ -48,7 +64,11 @@
                             x:Name="txtInputMessage" VerticalContentAlignment="Center"
                             FontSize="16"
                             TextChanged="TxtInputTextChanged"
-                            Text="{Binding NewChatName}"/>
+                            Text="{Binding NewChatName, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding CreateNewChatCommand}"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
                     <TextBlock 
                             x:Name="tbPlaceholder" Text="Indtast navn på ny Chat...." 
                             FontSize="16" Margin="5" Padding="12,7" Foreground="#FF387752"  
@@ -58,7 +78,7 @@
                             x:Name="btnClear" Width="30" HorizontalAlignment="Right" Margin="3" Content="✖️" FontSize="14" 
                             Background="Transparent" BorderThickness="0" Foreground="#FF387752"
                             HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="BtnClearClick"
-                    >
+                            Style="{StaticResource CustomButtonStyle}">
                     </Button>
                 </Grid>
             </Border>
@@ -71,8 +91,7 @@
                             Margin="2"
                             FontSize="20"
                             HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
-                            Command="{Binding CreateNewChatCommand}"
-                            />
+                            Command="{Binding CreateNewChatCommand}"/>
                 </Border>
             </Grid>
         </Grid>

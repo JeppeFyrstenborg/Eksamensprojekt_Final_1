@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPFApp.Views"
              xmlns:vm="clr-namespace:Eksamensprojekt_Final_1_WPFApp.ViewModels"
+             d:DataContext="d:DesignInstance Type=vm:HomeViewModel" 
              mc:Ignorable="d"
-             d:DataContext="d:DesignInstance Type=vm:HomeViewModel" d:DesignWidth="800" Height="530">
+             d:DesignWidth="800" Height="530">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,11 +21,11 @@
                     Padding="2" MaxHeight="70">
                 <Button 
                 x:Name="button"
-                Style="{StaticResource CustomButtonStyle}"
-                Content="New Chat"
+                Content="Ny Chat"
                 FontSize="36"
                 Height="60"
-                    Command="{Binding GoToCreateChatCommand}"/>
+                Command="{Binding GoToCreateChatCommand}"
+                Style="{StaticResource CustomButtonStyle}"/>
             </Border>
         </Grid>
         <ListBox Style="{StaticResource CustomListBoxStyle}"
@@ -44,6 +45,21 @@
                Height="227"  
                VerticalAlignment="Top" 
                Width="340" Margin="0,124,0,0"/>
+        <Grid Grid.Column="0"
+              Margin="10"
+              >
+            <Border Style="{StaticResource CustomBorderStyle}" 
+                    Margin="100,360,100,10"
+                    Padding="2" MaxHeight="50">
+                <Button 
+                x:Name="buttonEdit"
+                Content="Rediger Bruger"
+                FontSize="20"
+                Height="40"
+                Style="{StaticResource CustomButtonStyle}"
+                Command="{Binding GoToEditUserCommand}"/>
+            </Border>
+        </Grid>
         <Label Content="ChattyVerse"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
@@ -57,5 +73,19 @@
                FontSize="82" 
                HorizontalAlignment="Left"
                Foreground="#fdc401"/>
+        <Border Style="{StaticResource CustomBorderStyle}"
+                Padding="0"
+                Grid.Column="0" Grid.ColumnSpan="2" MaxHeight="50"
+                Margin="100,450,100,10"
+                HorizontalAlignment="Center"
+                >
+            <Button  
+                Content="Log Out"
+                HorizontalAlignment="Center"
+                Padding="20,7"
+                Height="20"
+                FontSize="16" Command="{Binding LogOutCommand}"
+                Style="{StaticResource CustomButtonStyle}"/>
+        </Border>
     </Grid>
 </UserControl>

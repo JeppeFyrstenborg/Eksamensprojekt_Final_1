@@ -18,6 +18,15 @@ namespace Eksamensprojekt_Final_1_WPFApp
         public static ChatViewModel ChatViewModel { get; private set; }
         public static CreateChatViewModel CreateChatViewModel { get; private set; }
 
+        public static void LogOut()
+        {
+            LoginViewModel = new LoginViewModel();
+            HomeViewModel = new HomeViewModel();
+            ChatViewModel = new ChatViewModel();
+            CreateChatViewModel = new CreateChatViewModel();
+            MainViewModel.CurrentViewModel = LoginViewModel;
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             LoginViewModel = new LoginViewModel();
@@ -28,7 +37,6 @@ namespace Eksamensprojekt_Final_1_WPFApp
             {
                 CurrentViewModel = LoginViewModel
             };
-
             base.OnStartup(e);
         }
 

@@ -14,5 +14,9 @@ namespace DAL.Repositories
         User GetUserFromEmail(string email);
 
         List<User> GetAllUsers();
+
+        void UpdateUser(string email, string username, int userID);
+
+        int CreateNewUser(string username, string email);
     }
 }

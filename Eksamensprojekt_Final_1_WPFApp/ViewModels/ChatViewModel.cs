@@ -130,6 +130,8 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
         public void DeleteChat()
         {
             _chatController.DeleteChatWithChatId(Chat.ChatId);
+            GoBackToHomeCommand.Execute(null);
+            App.HomeViewModel.GetChatsFromDbForUser();
         }
     }
 }

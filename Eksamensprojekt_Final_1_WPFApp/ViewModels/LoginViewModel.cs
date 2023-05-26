@@ -31,6 +31,20 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             }
         }
 
+        private RelayCommand _goToCreateUser;
+        public RelayCommand GoToCreateUser
+        {
+            get
+            {
+                if (_goToCreateUser == null)
+                {
+                    _goToCreateUser = new RelayCommand(
+                        () => App.MainViewModel.CurrentViewModel = new CreateUserViewModel());
+                }
+                return _goToCreateUser;
+            }
+        }
+
         private string _email;
 
         public string Email
@@ -75,7 +89,7 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
 
             _userAuthRepository = new UserAuthRepository();
             _userRepository = new UserRepository();
-            _userController = new UserController(_userRepository);
+            _userController = new UserController(_userRepository, _userAuthRepository);
             _security = new Security(_userAuthRepository, _userRepository);
         }
 

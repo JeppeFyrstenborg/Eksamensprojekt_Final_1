@@ -15,5 +15,7 @@ namespace DAL.Repositories
 
         void UpdateMessageInChat(int chatId, int messageId, string messageText);
 
+        List<Message> GetMessagesForUserId(int userId);
+
     }
 }

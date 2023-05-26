@@ -12,11 +12,6 @@ namespace Initializers
 
         protected override void Seed(DatabaseContext context)
         {
-            //if (context.Messages.FirstOrDefault() == null)
-            //{
-            //    var messageInitializer = new MessageInitializer();
-            //    messageInitializer.SeedMessages(context);
-            //}
             Chat Chat1 = new Chat
             {
                 ChatName = "Coozy Chat"

@@ -2,12 +2,9 @@
 using CommunityToolkit.Mvvm.Input;
 using DAL.Repositories;
 using DTO.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
 {
@@ -26,8 +23,7 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             SelectedUser = null;
             NewChatName = string.Empty;
             _chatController = new ChatController(new ChatRepository());
-            _userController = new UserController(new UserRepository());
-            UpdateAllUsers();
+            _userController = new UserController(new UserRepository(), new UserAuthRepository());
         }
 
         private User _selectedUser;
@@ -39,6 +35,8 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             {
                 _selectedUser = value;
                 OnPropertyChanged("SelectedUser");
+                CreateNewChatCommand.NotifyCanExecuteChanged();
+
             }
         }
         private string _newChatName;
@@ -50,17 +48,18 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             {
                 _newChatName = value;
                 OnPropertyChanged("NewChatName");
+                CreateNewChatCommand.NotifyCanExecuteChanged();
             }
         }
 
-        private List<User> _allUsers;
+        private List<User> _allUsersWithoutLoggedInUser;
 
-        public List<User> AllUsers
+        public List<User> AllUsersWithoutLoggedInUser
         {
-            get { return _allUsers; }
+            get { return _allUsersWithoutLoggedInUser; }
             set
             {
-                _allUsers = value;
+                _allUsersWithoutLoggedInUser = value;
                 OnPropertyChanged("AllUsers");
             }
         }
@@ -80,17 +79,41 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             }
         }
 
+        private IRelayCommand _goBackToHomeCommand;
+        public IRelayCommand GoBackToHomeCommand
+        {
+            get
+            {
+                if (_goBackToHomeCommand == null)
+                {
+                    _goBackToHomeCommand = new RelayCommand(GoToHomeView);
+                }
+                return _goBackToHomeCommand;
+            }
+        }
+
+        public void GoToHomeView()
+        {
+            App.MainViewModel.CurrentViewModel = App.HomeViewModel;
+            App.HomeViewModel.GetChatsFromDbForUser();
+        }
+
         public void UpdateAllUsers()
         {
-            AllUsers = _userController.GetAllUsers();
+            AllUsersWithoutLoggedInUser = _userController.GetAllUsers()
+                .Where(u => u.UserId != App.HomeViewModel.User.UserId)
+                .ToList();
         }
 
         private bool CanCreateNewChat()
-        => SelectedUser != null;
+        => SelectedUser != null && NewChatName.Length != 0;
 
         public void CreateNewChat()
         {
-            _chatController.CreateNewChatWithNameAndUserIds(NewChatName, SelectedUser.UserId, App.HomeViewModel.User.UserId);
+            _chatController
+                .CreateNewChatWithNameAndUserIds(NewChatName, SelectedUser.UserId, App.HomeViewModel.User.UserId);
+            SelectedUser = null;
+            NewChatName = string.Empty;
         }
 
     }

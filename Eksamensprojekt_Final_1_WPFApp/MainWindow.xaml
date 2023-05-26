@@ -23,6 +23,12 @@
         <DataTemplate DataType="{x:Type vm:CreateChatViewModel}">
             <views:CreateChatView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditUserViewModel}">
+            <views:EditUserView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateUserViewModel}">
+            <views:CreateUserView />
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
