@@ -115,5 +115,13 @@ namespace DAL.Repositories
                 db.SaveChanges();
             }
         }
+
+        public List<Chat> GetAllChats()
+        {
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                return db.Chats.Include(c => c.Users).ToList();
+            }
+        }
     }
 }

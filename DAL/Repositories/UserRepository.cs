@@ -1,9 +1,6 @@
 ﻿using DTO.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -14,7 +11,7 @@ namespace DAL.Repositories
             int userId = 0;
             using (DatabaseContext db = new DatabaseContext())
             {
-                if(db.Users.Where(x => x.Email == email).FirstOrDefault() != null)
+                if (db.Users.Where(x => x.Email == email).FirstOrDefault() != null)
                     userId = db.Users.Where(x => x.Email == email).FirstOrDefault().UserId;
             }
             return userId;
@@ -28,7 +25,7 @@ namespace DAL.Repositories
             }
         }
 
-        public List<User> GetAllUsers() 
+        public List<User> GetAllUsers()
         {
             using (DatabaseContext db = new DatabaseContext())
             {
@@ -61,6 +58,34 @@ namespace DAL.Repositories
                 db.SaveChanges();
 
                 return db.Users.FirstOrDefault(u => u.Username == username && u.Email == email).UserId;
+            }
+        }
+
+        public void DeleteUserWithId(int userId)
+        {
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                User UserToDelete = db.Users.FirstOrDefault(u => u.UserId == userId);
+                UserAuth UserAuthToDelete = db.UsersAuth.FirstOrDefault(u => u.User.UserId == userId);
+
+                if (UserToDelete.Chats != null)
+                {
+                    foreach (Chat chat in UserToDelete.Chats)
+                    {
+                        db.Chats.Remove(chat);
+                    }
+                }
+
+                var messages = db.Messages.Where(m => m.User.UserId == userId);
+                foreach (var message in messages)
+                {
+                    db.Messages.Remove(message);
+                }
+
+                db.UsersAuth.Remove(UserAuthToDelete);
+                db.Users.Remove(UserToDelete);
+
+                db.SaveChanges();
             }
         }
     }

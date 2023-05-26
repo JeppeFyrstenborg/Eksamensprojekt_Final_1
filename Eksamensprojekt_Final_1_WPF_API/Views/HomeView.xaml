@@ -9,9 +9,86 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel  Margin="200,50" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Label Style="{StaticResource CustomLabelStyle}" Content="Chats" FontSize="26" HorizontalAlignment="Center"/>
-            <ListBox Style="{StaticResource CustomListBoxStyle}" MinHeight="300" ItemsSource="{Binding Chats}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Margin="20,50" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Label Style="{StaticResource CustomLabelStyle}" Content="Alle Chats" FontSize="26" HorizontalAlignment="Center"/>
+            <Border Style="{StaticResource CustomBorderStyle}">
+                <ListBox Style="{StaticResource CustomListBoxStyle}" Height="300" ItemsSource="{Binding Chats}"
+                     SelectedItem="{Binding SelectedChat}" Margin="3">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="0,0,0,1" BorderBrush="#FF387752" Padding="5">
+                                <StackPanel>
+                                    <TextBlock>
+                                        <Run Text="Navn: " />
+                                        <Run Text="{Binding ChatName}" />
+                                    </TextBlock>
+                                    <TextBlock>
+                                        <Run Text="Brugere: " />
+                                        <Run Text="{Binding Users[0].Username}" />
+                                        <Run Text=" og " />
+                                        <Run Text="{Binding Users[1].Username}" />
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+            <Label Style="{StaticResource CustomLabelStyle}" FontSize="12"
+                   Content="{Binding StatusMessage}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Margin="40,70">
+            <Label Style="{StaticResource CustomLabelStyle}" FontSize="16" Margin="20,0" Content="Chat ID:"/>
+            <Border Style="{StaticResource CustomBorderStyle}"
+                    Margin="20,0,20,10"
+                    Width="200">
+                <TextBox FontSize="16" Background="#fdc401" Margin="3"
+                     Text="{Binding SelectedChat.ChatId}" BorderThickness="0" 
+                     Padding="12,7" Foreground="#FF387752"  FontFamily="Ink Free" FontWeight="Bold"
+                     IsReadOnly="true"/>
+            </Border>
+            <Label Style="{StaticResource CustomLabelStyle}" FontSize="16" Margin="20,0" Content="Chatnavn:"/>
+            <Border Style="{StaticResource CustomBorderStyle}"
+                    Margin="20,0,20,10" 
+                    Width="200">
+                <TextBox FontSize="16" Background="#fdc401" Margin="3"
+                     Text="{Binding SelectedChat.ChatName}" BorderThickness="0" 
+                     Padding="12,7" Foreground="#FF387752"  FontFamily="Ink Free" FontWeight="Bold"
+                     IsReadOnly="false"/>
+            </Border>
+            <Label Style="{StaticResource CustomLabelStyle}" FontSize="16" Margin="20,0" Content="Oprettet Dato:"/>
+            <Border Style="{StaticResource CustomBorderStyle}"
+                    Margin="20,0,20,10"
+                    Width="200">
+                <TextBox FontSize="16" Background="#fdc401" Margin="3"
+                     Text="{Binding SelectedChat.CreationDate, StringFormat='dd-MM-yyyy HH:mm'}" BorderThickness="0" 
+                     Padding="12,7" Foreground="#FF387752"  FontFamily="Ink Free" FontWeight="Bold"
+                     IsReadOnly="true"/>
+            </Border>
+            <Border 
+                Style="{StaticResource CustomBorderStyle}"
+                Margin="20,20,20,10">
+                <Button
+                    Style="{StaticResource CustomButtonStyle}"
+                    Content="Opdater Valgt Chat"
+                    Command="{Binding UpdateChatCommand}"
+                    Margin="2"
+                    FontSize="20"/>
+            </Border>
+            <Border 
+                Style="{StaticResource CustomBorderStyle}"
+                Margin="20,10,20,20">
+                <Button
+                    Style="{StaticResource CustomButtonStyle}"
+                    Content="Slet valgt Chat"
+                    Margin="2"
+                    FontSize="20"
+                    Command="{Binding DeleteChatCommand}"/>
+            </Border>
         </StackPanel>
     </Grid>
 </UserControl>

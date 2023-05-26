@@ -11,7 +11,7 @@ namespace DAL.Repositories
         {
             using (DatabaseContext db = new DatabaseContext())
             {
-                return db.Messages.ToList();
+                return db.Messages.Include(m => m.User).ToList();
             }
         }
 

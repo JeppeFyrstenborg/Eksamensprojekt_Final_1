@@ -9,6 +9,8 @@ namespace DAL.Repositories
 {
     public interface IChatRepository
     {
+        List<Chat> GetAllChats();
+
         List<Chat> GetChatsForUserID(int userId);
 
         void CreateMessageInChat(string messageText, int userId, int chatId);

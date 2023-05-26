@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Eksamensprojekt_Final_1_WPF_API.Views.CreateUserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPF_API.Views"
+             xmlns:vm="clr-namespace:Eksamensprojekt_Final_1_WPF_API.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:CreateUserViewModel}"
+             mc:Ignorable="d" d:DesignWidth="800" Height="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Opret Ny Bruger" Grid.Column="0" Grid.ColumnSpan="3"
+                   Margin="35,10" FontSize="40" Foreground="#fdc401"  
+                   FontFamily="Ink Free" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="20,0,20,10">
+            <TextBlock Text="Brugernavn" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" 
+                       FontFamily="Ink Free" FontWeight="Bold"/>
+            <Border  Style="{StaticResource CustomBorderStyle}">
+                <TextBox x:Name="UsernameBox" FontSize="18" Background="#fdc401" 
+                     Text="{Binding Username}" BorderThickness="0" Padding="12,7" Margin="3" 
+                     Foreground="#FF387752"  FontFamily="Ink Free" FontWeight="Bold"/>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2" Margin="20,0,20,10">
+            <TextBlock Text="E-mail Adresse" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" 
+                       FontFamily="Ink Free" FontWeight="Bold"/>
+            <Border  Style="{StaticResource CustomBorderStyle}">
+                <TextBox x:Name="EmailTextBox" FontSize="18" Background="#fdc401" 
+                     Text="{Binding Email}" BorderThickness="0" Padding="12,7" Margin="3" 
+                     Foreground="#FF387752"  FontFamily="Ink Free" FontWeight="Bold"/>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="3" Margin="20,0,20,10">
+            <TextBlock Text="Password" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" FontFamily="Ink Free" FontWeight="Bold"/>
+            <Border  Style="{StaticResource CustomBorderStyle}">
+                <PasswordBox x:Name="PasswordBox" FontSize="18" PasswordChanged="PasswordBox_PasswordChanged" 
+                         Background="#fdc401" BorderThickness="0" Padding="12,7" Margin="3"
+                         Foreground="#FF387752" FontFamily="Ink Free" FontWeight="Bold">
+                </PasswordBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="4" Margin="20,0,20,10">
+            <TextBlock Text="Gentag Password" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" FontFamily="Ink Free" FontWeight="Bold"/>
+            <Border Style="{StaticResource CustomBorderStyle}">
+                <PasswordBox x:Name="PasswordBox2" Margin="3" FontSize="18" PasswordChanged="PasswordBox2_PasswordChanged" 
+                         Background="#fdc401" BorderThickness="0" Padding="12,7" 
+                         Foreground="#FF387752" FontFamily="Ink Free" FontWeight="Bold">
+                    <PasswordBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding CreateNewUserCommand}" />
+                    </PasswordBox.InputBindings>
+                </PasswordBox>
+            </Border>
+        </StackPanel>
+        <Border Style="{StaticResource CustomBorderStyle}" Grid.Column="1" Grid.Row="5" Margin="40,10" 
+                VerticalAlignment="Top" >
+            <Button Content="Opret Bruger" Margin="3"
+                Background="#fdc401" Foreground="#FF387752" 
+                Padding="5" FontFamily="Ink Free" FontWeight="Bold" 
+                FontSize="24" Command="{Binding CreateNewUserCommand}"
+                Style="{StaticResource CustomButtonStyle}"/>
+        </Border>
+    </Grid>
+</UserControl>

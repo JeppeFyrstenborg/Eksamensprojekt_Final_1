@@ -18,5 +18,7 @@ namespace DAL.Repositories
         void UpdateUser(string email, string username, int userID);
 
         int CreateNewUser(string username, string email);
+
+        void DeleteUserWithId(int userId);
     }
 }

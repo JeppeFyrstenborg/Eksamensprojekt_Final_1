@@ -16,10 +16,16 @@ namespace Eksamensprojekt_Final_1_WPF_API
     {
         public static MainViewModel MainViewModel { get; private set; }
         public static HomeViewModel HomeViewModel { get; private set; }
+        public static UsersViewModel UsersViewModel { get; private set; }
+        public static MessagesViewModel MessagesViewModel { get; private set; }
+        public static CreateUserViewModel CreateUserViewModel { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             HomeViewModel = new HomeViewModel();
+            UsersViewModel = new UsersViewModel();
+            MessagesViewModel = new MessagesViewModel();
+            CreateUserViewModel = new CreateUserViewModel();
             MainViewModel = new MainViewModel
             {
                 CurrentViewModel = HomeViewModel

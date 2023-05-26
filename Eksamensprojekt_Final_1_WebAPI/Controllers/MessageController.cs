@@ -16,7 +16,7 @@ namespace Eksamensprojekt_Final_1_WebAPI.Controllers
 
 
         [HttpGet]
-        public List<Message> Get()
+        public List<Message> GetAll()
         {
             return _messageRepository.GetAllMessages();
         }

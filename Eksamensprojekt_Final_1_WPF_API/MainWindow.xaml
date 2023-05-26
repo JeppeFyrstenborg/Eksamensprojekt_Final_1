@@ -6,12 +6,22 @@
         xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPF_API"
         xmlns:vm="clr-namespace:Eksamensprojekt_Final_1_WPF_API.ViewModels"
         xmlns:views="clr-namespace:Eksamensprojekt_Final_1_WPF_API.Views"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800"
+        Title="MainWindow" Height="700" Width="800"
         Background="#FF387752">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:HomeViewModel}">
             <views:HomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:UsersViewModel}">
+            <views:UsersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MessagesViewModel}">
+            <views:MessagesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateUserViewModel}">
+            <views:CreateUserView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -34,24 +44,30 @@
                     Margin="20"
                     Padding="5"
                     Grid.Column="0">
-                    <Button Style="{StaticResource CustomButtonStyle}"
-                        Content="Home">
+                    <Button 
+                        Style="{StaticResource CustomButtonStyle}"
+                        Content="Hjem"
+                        Command="{Binding GoToHomeCommand}">
                     </Button>
                 </Border>
                 <Border Style="{StaticResource CustomBorderStyle}"
                     Margin="20"
                     Padding="5"
                     Grid.Column="1">
-                    <Button Style="{StaticResource CustomButtonStyle}"
-                        Content="Users">
+                    <Button 
+                        Style="{StaticResource CustomButtonStyle}"
+                        Content="Brugere"
+                        Command="{Binding GoToUsersCommand}">
                     </Button>
                 </Border>
             <Border Style="{StaticResource CustomBorderStyle}"
                         Margin="20"
                         Padding="5"
                     Grid.Column="2">
-                <Button Style="{StaticResource CustomButtonStyle}"
-                        Content="Messages">
+                <Button 
+                        Style="{StaticResource CustomButtonStyle}"
+                        Content="Beskeder"
+                        Command="{Binding GoToMessagesCommand}">
                 </Button>
             </Border>
         </Grid>
