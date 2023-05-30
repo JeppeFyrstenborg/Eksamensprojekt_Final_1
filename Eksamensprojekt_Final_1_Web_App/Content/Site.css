@@ -1,0 +1,42 @@
+﻿body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*.nav-link {
+    color: #FFFCD602;
+}*/
+.nav-pills .nav-link.active,
+.nav-pills .nav-item.show .nav-link {
+    color: red;
+    background-color: red;
+    border-color: red;
+}
+
+.table-chat {
+  --bs-table-bg: #FFFCD602;
+  --bs-table-striped-bg: #2c3034;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #373b3e;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: #323539;
+  --bs-table-hover-color: #fff;
+  color: #FF387752;
+  border-color: #373b3e;
+}
+
+
+

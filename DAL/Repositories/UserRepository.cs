@@ -1,5 +1,7 @@
 ﻿using DTO.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace DAL.Repositories
@@ -33,23 +35,25 @@ namespace DAL.Repositories
             }
         }
 
-        public void UpdateUser(string email, string username, int userID)
+        public void UpdateUser(string email, string username, int userID, DateTime birthday)
         {
             using (DatabaseContext db = new DatabaseContext())
             {
                 User userToUpdate = db.Users.FirstOrDefault(u => u.UserId == userID);
                 userToUpdate.Email = email;
                 userToUpdate.Username = username;
+                userToUpdate.Birthday = birthday;
                 db.SaveChanges();
             }
         }
 
-        public int CreateNewUser(string username, string email)
+        public int CreateNewUser(string username, string email, DateTime birthday)
         {
             User tempUser = new User()
             {
                 Username = username,
-                Email = email
+                Email = email,
+                Birthday = birthday
             };
 
             using (DatabaseContext db = new DatabaseContext())
@@ -86,6 +90,14 @@ namespace DAL.Repositories
                 db.Users.Remove(UserToDelete);
 
                 db.SaveChanges();
+            }
+        }
+
+        public User GetUserFromUserId(int userId)
+        {
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                return db.Users.Where(u => u.UserId == userId).Include(u => u.Chats).FirstOrDefault();
             }
         }
     }

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Eksamensprojekt_Final_1_WPF_API.Views"
              xmlns:vm="clr-namespace:Eksamensprojekt_Final_1_WPF_API.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:CreateUserViewModel}"
-             mc:Ignorable="d" d:DesignWidth="800" Height="500">
+             mc:Ignorable="d" d:DesignWidth="800" Height="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -14,6 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -43,6 +44,25 @@
             </Border>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3" Margin="20,0,20,10">
+            <TextBlock Text="Fødselsdag" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" 
+                       FontFamily="Ink Free" FontWeight="Bold"/>
+            <Border Style="{StaticResource CustomBorderStyle}">
+                <DatePicker x:Name="BirthDayPicker" FontSize="18" Background="#fdc401" 
+                            Padding="12,7" Margin="3"
+                            Foreground="#FF387752"  FontFamily="Ink Free" 
+                            SelectedDate="{Binding Birthday}"
+                            BorderThickness="0">
+                    <DatePicker.Resources>
+                        <Style TargetType="DatePickerTextBox">
+                            <Setter Property="Background" Value="#fdc401"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="BorderBrush" Value="#fdc401"/>
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="4" Margin="20,0,20,10">
             <TextBlock Text="Password" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" FontFamily="Ink Free" FontWeight="Bold"/>
             <Border  Style="{StaticResource CustomBorderStyle}">
                 <PasswordBox x:Name="PasswordBox" FontSize="18" PasswordChanged="PasswordBox_PasswordChanged" 
@@ -51,7 +71,7 @@
                 </PasswordBox>
             </Border>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="4" Margin="20,0,20,10">
+        <StackPanel Grid.Column="1" Grid.Row="5" Margin="20,0,20,10">
             <TextBlock Text="Gentag Password" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" FontFamily="Ink Free" FontWeight="Bold"/>
             <Border Style="{StaticResource CustomBorderStyle}">
                 <PasswordBox x:Name="PasswordBox2" Margin="3" FontSize="18" PasswordChanged="PasswordBox2_PasswordChanged" 
@@ -63,7 +83,7 @@
                 </PasswordBox>
             </Border>
         </StackPanel>
-        <Border Style="{StaticResource CustomBorderStyle}" Grid.Column="1" Grid.Row="5" Margin="40,10" 
+        <Border Style="{StaticResource CustomBorderStyle}" Grid.Column="1" Grid.Row="6" Margin="40,10" 
                 VerticalAlignment="Top" >
             <Button Content="Opret Bruger" Margin="3"
                 Background="#fdc401" Foreground="#FF387752" 

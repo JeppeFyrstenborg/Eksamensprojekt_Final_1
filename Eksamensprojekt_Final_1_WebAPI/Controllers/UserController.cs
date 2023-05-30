@@ -36,7 +36,8 @@ namespace Eksamensprojekt_Final_1_WebAPI.Controllers
             {
                 if(_userRepository.GetUserFromEmail(userAuth.User.Email) == null)
                 {
-                    int createdUserId = _userRepository.CreateNewUser(userAuth.User.Username, userAuth.User.Email);
+                    int createdUserId = _userRepository.CreateNewUser(userAuth.User.Username, 
+                        userAuth.User.Email,userAuth.User.Birthday);
 
                     _userAuthRepository.CreateNewUserAuthForUserId
                         (createdUserId, userAuth.HashedPassword, userAuth.Salt);

@@ -31,6 +31,7 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             Email = string.Empty;
             Password = new SecureString();
             Password2 = new SecureString();
+            Birthday = DateTime.Now.Date.AddYears(-18);
         }
 
         private string _username;
@@ -58,6 +59,19 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
                 CreateNewUserCommand.NotifyCanExecuteChanged();
             }
         }
+
+        private DateTime _birthday;
+
+        public DateTime Birthday
+        {
+            get { return _birthday; }
+            set
+            {
+                _birthday = value; OnPropertyChanged("Birthday");
+                CreateNewUserCommand.NotifyCanExecuteChanged();
+            }
+        }
+
 
         private SecureString _password;
 
@@ -118,7 +132,8 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
                 && Password2.Length != 0
                 && _security.AreSecureStringsEqual(Password, Password2)
                 && Username.Length != 0
-                && Email.Length != 0;
+                && Email.Length != 0
+                && Birthday.Date <= DateTime.Now.Date.AddYears(-18);
 
         public void CreateNewUser()
         {
@@ -126,7 +141,7 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             {
                 Tuple<string, string> userAuthPassAndSalt = _security.GetHashedPasswordAndSaltFrom(Password);
 
-                _userController.CreateNewUser(Username, Email, userAuthPassAndSalt.Item1, userAuthPassAndSalt.Item2);
+                _userController.CreateNewUser(Username, Email, Birthday, userAuthPassAndSalt.Item1, userAuthPassAndSalt.Item2);
 
                 GoToLoginCommand.Execute(null);
             }

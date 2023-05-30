@@ -1,10 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace DTO.Models
 {
     public class Message
     {
         public int MessageId { get; set; }
+
+        [Display(Name = "Besked")]
+        [Required(ErrorMessage = "Du har ikke skrevet en besked")]
+        [StringLength(200, MinimumLength = 1, ErrorMessage = "Beskeden skal mindst indeholde et tegn og maks 200 tegn")]
         public string MessageText { get; set; }
 
         private DateTime _createdTime;

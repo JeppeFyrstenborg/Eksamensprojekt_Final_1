@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace DAL.Repositories
         void SetSaltForUserId(int userId);
 
         void CreateNewUserAuthForUserId(int userId, string hashedPassword, string salt);
+
+        UserAuth GetUserAuthFromUserId(int userId);
 
     }
 }

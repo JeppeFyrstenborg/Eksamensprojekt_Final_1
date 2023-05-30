@@ -4,19 +4,34 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Repositories;
+using DTO.Models;
+using Eksamensprojekt_Final_1_Web_App.ViewModels;
 
 namespace Eksamensprojekt_Final_1_Web_App.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ChatRepository ChatRepository = new ChatRepository();
+
         // GET: Home
-        public ActionResult Index()
+        public ActionResult GetChats()
         {
-            DatabaseContext databaseContext = new DatabaseContext();
+            List<Chat> chats = ChatRepository.GetAllChats();
 
-            ViewBag.data = databaseContext.Messages;
+            return View("Chats", chats);
+        }
 
-            return View();
+        [ChildActionOnly]
+        public ActionResult _chatListView(int? id)
+        {
+            UserChatViewModel userChatViewModel = new UserChatViewModel();
+
+            userChatViewModel.UserId = (int)id;
+            userChatViewModel.Chats = ChatRepository.GetChatsForUserID((int)id);
+
+            return PartialView(userChatViewModel);
         }
     }
 }

@@ -1,0 +1,26 @@
+﻿@model List<DTO.Models.Message>
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>
+                <h6>Besked</h6>
+            </th>
+            <th>
+                <h6>Sendt</h6>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

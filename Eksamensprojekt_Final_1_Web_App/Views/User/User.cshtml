@@ -1,0 +1,101 @@
+﻿@model Eksamensprojekt_Final_1_Web_App.ViewModels.UserViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section User {
+
+    <div class="row">
+        @if (Model == null)
+        {
+            <div class="col-4">
+                <h2 class="text-start mt-5"></h2>
+            </div>
+        }
+        else
+        {
+    <div class="col-4">
+        <h2 class="text-start mt-5">Beskeder i chat</h2>
+        <div id="messagesPartialViewContainer"></div>
+    </div>
+        }
+        <div class="col-4">
+            <h2 class="text-start mt-5">@ViewBag.Title</h2>
+            @if (Model == null)
+            {
+                using (Html.BeginForm("CreateUser", "User", FormMethod.Post))
+                {
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserAuth.User.Username, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.UserAuth.User.Username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserAuth.User.Username, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserAuth.User.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.UserAuth.User.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserAuth.User.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserAuth.User.Birthday, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.UserAuth.User.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserAuth.User.Birthday, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PasswordCheck, htmlAttributes: new { @class = "control-label" })
+                        @Html.PasswordFor(model => model.PasswordCheck, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PasswordCheck, "", new { @class = "text-danger" })
+                    </div>
+                    <button type="submit" class="btn btn-success  w-50 w-50 m-5">Opret</button>
+                }
+            }
+            else
+            {
+                using (Html.BeginForm("EditUser", "User", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserAuth.User.Username, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.UserAuth.User.Username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserAuth.User.Username, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserAuth.User.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.UserAuth.User.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserAuth.User.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserAuth.User.Birthday, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.UserAuth.User.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserAuth.User.Birthday, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.HiddenFor(model => model.UserAuth.User.UserId)
+            <button type="submit" class="btn btn-primary w-50 w-50 m-5">Gem</button>
+                }
+            }
+        </div>
+        @if (Model == null)
+        {
+            <div class="col-4">
+                <h2 class="text-start mt-5"></h2>
+            </div>
+        }
+        else
+        {
+            <div class="col-4">
+                <h2 class="text-start mt-5">Brugers chats</h2>
+                @Html.Action("_chatListView", "Home", new { id = Model.UserAuth.User.UserId })
+            </div>
+        }
+    </div>
+}

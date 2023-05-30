@@ -13,11 +13,13 @@ namespace DAL.Repositories
 
         User GetUserFromEmail(string email);
 
+        User GetUserFromUserId(int userId);
+
         List<User> GetAllUsers();
 
-        void UpdateUser(string email, string username, int userID);
+        void UpdateUser(string email, string username, int userID, DateTime birthday);
 
-        int CreateNewUser(string username, string email);
+        int CreateNewUser(string username, string email, DateTime birthday);
 
         void DeleteUserWithId(int userId);
     }

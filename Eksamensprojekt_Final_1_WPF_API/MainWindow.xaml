@@ -8,7 +8,7 @@
         xmlns:views="clr-namespace:Eksamensprojekt_Final_1_WPF_API.Views"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="800"
+        Title="MainWindow" Height="800" Width="800"
         Background="#FF387752">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:HomeViewModel}">

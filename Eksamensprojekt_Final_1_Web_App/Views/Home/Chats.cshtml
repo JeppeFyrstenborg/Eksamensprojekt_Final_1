@@ -1,0 +1,42 @@
+﻿@model List<DTO.Models.Chat>
+
+@{
+    ViewBag.Title = "Chats";
+    Layout = Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Chats{
+    <h2 class="text-center mt-5">Chats</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <h5>Chatnavn</h5>
+                </th>
+                <th>
+                    <h5>Oprettet dato</h5>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChatName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}

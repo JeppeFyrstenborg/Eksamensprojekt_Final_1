@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace DTO.Models
 {
     public class Chat
     {
         public int ChatId { get; set; }
-
+        
+        [Display(Name = "Navn på Chat")]
+        [Required(ErrorMessage = "Du har ikke indtastet navn på chat")]
+        [StringLength(80, MinimumLength = 3, ErrorMessage = "Navnet på chatten skal mindst have 3 bogstaver")]
         public string ChatName { get; set; }
 
         public DateTime CreationDate { get; set; }

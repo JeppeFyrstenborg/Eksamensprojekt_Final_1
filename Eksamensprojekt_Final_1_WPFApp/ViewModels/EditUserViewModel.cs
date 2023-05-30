@@ -92,7 +92,8 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
 
         public void SaveChangesForUser()
         {
-            _userController.UpdateUserWithDetails(UserForEdit.Email, UserForEdit.Username, UserForEdit.UserId);
+            _userController.UpdateUserWithDetails(UserForEdit.Email, UserForEdit.Username, 
+                UserForEdit.UserId, UserForEdit.Birthday);
             GoBackToHomeCommand.Execute(null);
         }
 

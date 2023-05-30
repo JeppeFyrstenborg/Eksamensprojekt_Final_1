@@ -32,14 +32,14 @@ namespace BLL.Controllers
             return _userRepository.GetAllUsers();
         }
 
-        public void UpdateUserWithDetails(string email, string username, int userID)
+        public void UpdateUserWithDetails(string email, string username, int userID, DateTime birthday)
         {
-            _userRepository.UpdateUser(email, username, userID);
+            _userRepository.UpdateUser(email, username, userID,birthday);
         }
 
-        public void CreateNewUser(string username, string email, string hashedPassword, string salt)
+        public void CreateNewUser(string username, string email, DateTime birthday, string hashedPassword, string salt)
         {
-            int createdUserId = _userRepository.CreateNewUser(username,email);
+            int createdUserId = _userRepository.CreateNewUser(username,email,birthday);
 
             _userAuthRepository.CreateNewUserAuthForUserId(createdUserId,hashedPassword,salt);
         }

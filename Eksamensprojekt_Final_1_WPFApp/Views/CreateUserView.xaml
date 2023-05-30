@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
             <Button Grid.Column="0" Grid.Row="0"
@@ -53,13 +54,28 @@
                      Foreground="#FF387752"  FontFamily="Ink Free" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3" Margin="20,0,20,10">
+            <TextBlock Text="Fødselsdag" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" 
+                       FontFamily="Ink Free" FontWeight="Bold"/>
+            <DatePicker x:Name="BirthDayPicker" FontSize="18" Background="#fdc401" Padding="12,7" 
+                        Foreground="#FF387752"  FontFamily="Ink Free" SelectedDate="{Binding Birthday}"
+                >
+                <DatePicker.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="Background" Value="#fdc401"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="BorderBrush" Value="#fdc401"/>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="4" Margin="20,0,20,10">
             <TextBlock Text="Password" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" FontFamily="Ink Free" FontWeight="Bold"/>
             <PasswordBox x:Name="PasswordBox" FontSize="18" PasswordChanged="PasswordBox_PasswordChanged" 
                          Background="#fdc401" BorderThickness="0" Padding="12,7" 
                          Foreground="#FF387752" FontFamily="Ink Free" FontWeight="Bold">
             </PasswordBox>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="4" Margin="20,0,20,10">
+        <StackPanel Grid.Column="1" Grid.Row="5" Margin="20,0,20,10">
             <TextBlock Text="Gentag Password" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" FontFamily="Ink Free" FontWeight="Bold"/>
             <PasswordBox x:Name="PasswordBox2" FontSize="18" PasswordChanged="PasswordBox2_PasswordChanged" 
                          Background="#fdc401" BorderThickness="0" Padding="12,7" 
@@ -70,7 +86,7 @@
             </PasswordBox>
         </StackPanel>
         <Button Grid.Column="1" Content="Opret Bruger" 
-                Grid.Row="5" Margin="40,20" Background="#fdc401" Foreground="#FF387752" 
+                Grid.Row="6" Margin="40,20" Background="#fdc401" Foreground="#FF387752" 
                 Padding="5" FontFamily="Ink Free" FontWeight="Bold" 
                 FontSize="24" Command="{Binding CreateNewUserCommand}"
                 Style="{StaticResource CustomButtonStyle}"/>

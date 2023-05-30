@@ -55,8 +55,22 @@
             <TextBlock Text="Brugernavn" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" FontFamily="Ink Free" FontWeight="Bold"/>
             <TextBox x:Name="UsernameTextBox" FontSize="18" Background="#fdc401" Text="{Binding UserForEdit.Username}" BorderThickness="0" Padding="12,7" Foreground="#FF387752"  FontFamily="Ink Free" FontWeight="Bold"/>
         </StackPanel>
-
-        <Border Grid.Column="0" Grid.Row="4"
+        <StackPanel Grid.Column="0" Grid.Row="4" Margin="10">
+            <TextBlock Text="Fødselsdag" FontSize="20" Foreground="#fdc401" Margin="0,0,0,5" 
+                       FontFamily="Ink Free" FontWeight="Bold"/>
+            <DatePicker x:Name="BirthDayPicker" FontSize="18" Background="#fdc401" Padding="12,7" 
+                        Foreground="#FF387752"  FontFamily="Ink Free" SelectedDate="{Binding UserForEdit.Birthday}"
+                >
+                <DatePicker.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="Background" Value="#fdc401"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="BorderBrush" Value="#fdc401"/>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+        </StackPanel>
+        <Border Grid.Column="0" Grid.Row="5"
                 Style="{StaticResource CustomBorderStyle}"
                 Margin="10">
             <Button 

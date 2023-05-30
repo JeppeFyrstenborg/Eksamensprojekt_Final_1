@@ -39,7 +39,7 @@ namespace Eksamensprojekt_Final_1_WPF_API.Controllers
             }
         }
 
-        public HttpResponseMessage CreateUser(string username, string email, SecureString password)
+        public HttpResponseMessage CreateUser(string username, string email, SecureString password, DateTime birthday)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -48,7 +48,8 @@ namespace Eksamensprojekt_Final_1_WPF_API.Controllers
                 User user = new User()
                 {
                     Username = username,
-                    Email = email
+                    Email = email,
+                    Birthday = birthday
                 };
 
                 UserAuth userAuth = new UserAuth()
@@ -57,7 +58,8 @@ namespace Eksamensprojekt_Final_1_WPF_API.Controllers
                     Salt = passwordAndSalt.Item2,
                     User = user
                 };
-                StringContent content = new StringContent(JsonSerializer.Serialize(userAuth), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonSerializer
+                    .Serialize(userAuth), Encoding.UTF8, "application/json");
 
                 return client.PostAsync("https://localhost:44336/api/user/AddUser", content).Result;
             }

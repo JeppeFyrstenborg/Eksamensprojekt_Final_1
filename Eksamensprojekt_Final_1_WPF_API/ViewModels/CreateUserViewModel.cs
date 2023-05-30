@@ -32,6 +32,7 @@ namespace Eksamensprojekt_Final_1_WPF_API.ViewModels
             Email = string.Empty;
             Password = new SecureString();
             Password2 = new SecureString();
+            Birthday = DateTime.Now.Date.AddYears(-18);
         }
 
         private string _username;
@@ -56,6 +57,19 @@ namespace Eksamensprojekt_Final_1_WPF_API.ViewModels
             {
                 _email = value;
                 OnPropertyChanged("Email");
+                CreateNewUserCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        private DateTime _birthday;
+
+        public DateTime Birthday
+        {
+            get { return _birthday; }
+            set
+            {
+                _birthday = value; 
+                OnPropertyChanged("Birthday");
                 CreateNewUserCommand.NotifyCanExecuteChanged();
             }
         }
@@ -117,16 +131,19 @@ namespace Eksamensprojekt_Final_1_WPF_API.ViewModels
             && Password2.Length != 0
             && this.Security.AreSecureStringsEqual(Password, Password2)
             && Username.Length != 0
-            && Email.Length != 0;
+            && Email.Length != 0
+            && Birthday.Date <= DateTime.Now.Date.AddYears(-18);
+
 
         public void CreateNewUser()
         {
-            this.UserController.CreateUser(Username, Email, Password);
+            this.UserController.CreateUser(Username, Email, Password, Birthday);
 
             Username = string.Empty;
             Email = string.Empty;
             Password = new SecureString();
             Password2 = new SecureString();
+            Birthday = DateTime.Now.Date.AddYears(-18);
 
             App.MainViewModel.CurrentViewModel = App.UsersViewModel;
             App.UsersViewModel.UpdateUsers();

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark">
+        <div class="container-fluid justify-content-center">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link text-warning" href="/">
+                        <h4>Chats</h4>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-warning" href="/user/getusers">
+                        <h4>Brugere</h4>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-warning" href="/message/getmessages">
+                        <h4>Beskeder</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        @RenderSection("Chats", false)
+        @RenderSection("Messages", false)
+        @RenderSection("Users", false)
+        @RenderSection("User", false)
+    </div>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/OwnScript.js"></script>
+</body>
+</html>

@@ -1,9 +1,7 @@
 ﻿using DTO.Models;
 using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -42,7 +40,7 @@ namespace DAL.Repositories
             string salt = "";
             using (DatabaseContext db = new DatabaseContext())
             {
-                if(db.UsersAuth.Where(x => x.User.UserId == userId).FirstOrDefault() != null)
+                if (db.UsersAuth.Where(x => x.User.UserId == userId).FirstOrDefault() != null)
                     salt = db.UsersAuth.Where(x => x.User.UserId == userId).FirstOrDefault().Salt;
             }
             return salt;
@@ -57,6 +55,14 @@ namespace DAL.Repositories
         public void SetSaltForUserId(int userId)
         {
             throw new NotImplementedException();
+        }
+
+        public UserAuth GetUserAuthFromUserId(int userId)
+        {
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                return db.UsersAuth.Where(u => u.User.UserId == userId).Include(u => u.User).Include(u => u.User.Chats).FirstOrDefault();
+            }
         }
     }
 }
