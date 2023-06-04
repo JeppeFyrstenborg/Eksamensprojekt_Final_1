@@ -1,12 +1,11 @@
 ﻿using DAL;
-using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace Initializers
 {
     internal class MultipleInitializer : DropCreateDatabaseIfModelChanges<DatabaseContext>
     {
-        
+
         protected override void Seed(DatabaseContext context)
         {
             UserInitializer x2 = new UserInitializer();

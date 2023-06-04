@@ -1,13 +1,8 @@
 ﻿using DTO.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -15,7 +10,7 @@ namespace DAL.Repositories
     {
         public List<Chat> GetChatsForUserID(int userId)
         {
-            using (DatabaseContext db = new DatabaseContext()) 
+            using (DatabaseContext db = new DatabaseContext())
             {
                 return db.Chats.Where(x => x.Users.Any(u => u.UserId == userId)).ToList();
             }
@@ -31,8 +26,8 @@ namespace DAL.Repositories
                 };
 
                 User TempUser = (User)(from u in db.Users
-                                where u.UserId == userId
-                                select u);
+                                       where u.UserId == userId
+                                       select u);
                 TempMessage.User = TempUser;
 
                 Chat TempChat = (Chat)(from c in db.Chats

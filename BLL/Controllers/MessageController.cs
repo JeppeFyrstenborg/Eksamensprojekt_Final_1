@@ -1,10 +1,6 @@
-﻿using DAL;
-using DAL.Repositories;
+﻿using DAL.Repositories;
 using DTO.Models;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Dynamic;
-using System.Linq;
 
 namespace BLL.Controllers
 {

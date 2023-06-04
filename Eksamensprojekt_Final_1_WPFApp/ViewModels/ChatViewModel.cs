@@ -41,8 +41,8 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
         public List<Message> SortedMessages
         {
             get { return _sortedMessages; }
-            set 
-            { 
+            set
+            {
                 _sortedMessages = value;
                 OnPropertyChanged("SortedMessages");
             }
@@ -56,7 +56,7 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
             {
                 if (_goBackToHomeCommand == null)
                 {
-                    _goBackToHomeCommand = new RelayCommand(() => App.MainViewModel.CurrentViewModel = 
+                    _goBackToHomeCommand = new RelayCommand(() => App.MainViewModel.CurrentViewModel =
                     App.HomeViewModel);
                 }
                 return _goBackToHomeCommand;

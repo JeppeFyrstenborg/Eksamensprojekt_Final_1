@@ -9,7 +9,7 @@ namespace Eksamensprojekt_Final_1_Web_App
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            // User routes
+            // Routing til alt vedrørende "User".
             routes.MapRoute(
                 name: "GetUsers",
                 url: "User/GetUsers",
@@ -34,21 +34,20 @@ namespace Eksamensprojekt_Final_1_Web_App
                 defaults: new { controller = "User", action = "DeleteUser", id = UrlParameter.Optional }
             );
 
-            // Home routes
+            // Routing til alt vedrørende "Home" eller chats.
             routes.MapRoute(
                 name: "GetChats",
                 url: "Home/GetChats",
                 defaults: new { controller = "Home", action = "GetChats" }
             );
 
-            // Message routes
+            // Routing til alt vedrørende "Message".
             routes.MapRoute(
                 name: "GetMessages",
                 url: "Message/GetMessages",
                 defaults: new { controller = "Message", action = "GetMessages" }
             );
 
-            // Custom route for _messagesListView
             routes.MapRoute(
                 name: "MessagesListView",
                 url: "Message/_messagesListView/{id}/{id2}",

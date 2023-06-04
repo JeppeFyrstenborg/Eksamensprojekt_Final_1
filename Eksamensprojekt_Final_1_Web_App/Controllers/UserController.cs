@@ -12,6 +12,8 @@ using System.Net;
 
 namespace Eksamensprojekt_Final_1_Web_App.Controllers
 {
+    //Controller til alt vedrørende bruger.
+    //Jeg har lavet fuld CRUD på User.
     public class UserController : Controller
     {
         IUserRepository UserRepository = new UserRepository();

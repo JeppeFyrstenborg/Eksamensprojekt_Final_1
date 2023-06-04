@@ -1,14 +1,9 @@
 ﻿using DAL.Repositories;
-using DTO.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -29,26 +24,26 @@ namespace BLL.Services
 
         public Tuple<string, string> GetHashedPasswordAndSaltFrom(SecureString password)
         {
-            // Generate a random salt value
+            // Generering af vilkårlig salt.
             byte[] salt = new byte[32];
             using (var rng = new RNGCryptoServiceProvider())
             {
                 rng.GetBytes(salt);
             }
 
-            // Convert the SecureString password to a byte array
+            // Konvertyering af SecureString password til byte array
             byte[] passwordBytes = ConvertSecureStringToByteArray(password);
 
-            // Concatenate the password and salt
+            // Password og salt sættes sammen
             byte[] passwordWithSalt = new byte[passwordBytes.Length + salt.Length];
             Buffer.BlockCopy(passwordBytes, 0, passwordWithSalt, 0, passwordBytes.Length);
             Buffer.BlockCopy(salt, 0, passwordWithSalt, passwordBytes.Length, salt.Length);
 
-            // Compute the hash of the password + salt
+            // Laver hashværdien af password + salt.
             SHA256 sha256 = SHA256.Create();
             byte[] hash = sha256.ComputeHash(passwordWithSalt);
 
-            // Convert the hash and salt to strings for storage
+            // Konvertering af den hashede værdi til string, så den kan gemmes.
             string hashString = Convert.ToBase64String(hash);
             string saltString = Convert.ToBase64String(salt);
 

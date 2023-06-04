@@ -1,11 +1,7 @@
-﻿using BLL.Services;
-using DAL.Repositories;
+﻿using DAL.Repositories;
 using DTO.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Controllers
 {
@@ -34,14 +30,14 @@ namespace BLL.Controllers
 
         public void UpdateUserWithDetails(string email, string username, int userID, DateTime birthday)
         {
-            _userRepository.UpdateUser(email, username, userID,birthday);
+            _userRepository.UpdateUser(email, username, userID, birthday);
         }
 
         public void CreateNewUser(string username, string email, DateTime birthday, string hashedPassword, string salt)
         {
-            int createdUserId = _userRepository.CreateNewUser(username,email,birthday);
+            int createdUserId = _userRepository.CreateNewUser(username, email, birthday);
 
-            _userAuthRepository.CreateNewUserAuthForUserId(createdUserId,hashedPassword,salt);
+            _userAuthRepository.CreateNewUserAuthForUserId(createdUserId, hashedPassword, salt);
         }
     }
 }

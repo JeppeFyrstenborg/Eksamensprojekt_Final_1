@@ -1,14 +1,9 @@
 ﻿using BLL.Controllers;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DAL.Repositories;
 using DTO.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
 {
@@ -92,8 +87,8 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
         public User User
         {
             get { return _user; }
-            set 
-            { 
+            set
+            {
                 _user = value;
                 OnPropertyChanged("User");
                 App.CreateChatViewModel.UpdateAllUsers();
@@ -106,8 +101,8 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
         public Chat SelectedChat
         {
             get { return _selectedChat; }
-            set 
-            { 
+            set
+            {
                 _selectedChat = value;
                 OnPropertyChanged("SelectedChat");
                 GoToSelectedChatCommand.NotifyCanExecuteChanged();
@@ -120,8 +115,8 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
         public List<Chat> Chats
         {
             get { return _chats; }
-            set 
-            { 
+            set
+            {
                 _chats = value;
                 OnPropertyChanged("Chats");
             }

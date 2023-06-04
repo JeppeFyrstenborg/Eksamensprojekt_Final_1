@@ -16,9 +16,6 @@ textarea {
     max-width: 280px;
 }
 
-/*.nav-link {
-    color: #FFFCD602;
-}*/
 .nav-pills .nav-link.active,
 .nav-pills .nav-item.show .nav-link {
     color: red;

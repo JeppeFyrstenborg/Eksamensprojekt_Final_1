@@ -2,12 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using DAL.Repositories;
 using DTO.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
 {
@@ -92,7 +88,7 @@ namespace Eksamensprojekt_Final_1_WPFApp.ViewModels
 
         public void SaveChangesForUser()
         {
-            _userController.UpdateUserWithDetails(UserForEdit.Email, UserForEdit.Username, 
+            _userController.UpdateUserWithDetails(UserForEdit.Email, UserForEdit.Username,
                 UserForEdit.UserId, UserForEdit.Birthday);
             GoBackToHomeCommand.Execute(null);
         }

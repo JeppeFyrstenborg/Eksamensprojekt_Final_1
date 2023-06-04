@@ -1,21 +1,25 @@
-﻿$(document).ready(function () {
-    // Get the current URL path
+﻿
+$(document).ready(function () {
+
     var path = window.location.pathname;
 
-    // Add the active class to the corresponding navigation item
+    //Function som ændrer på knapperne i toppen, og sørger for at det er den aktuelle sides knap der er aktiv.
     $('.nav-link').each(function () {
         var href = $(this).attr('href');
-        var hrefPath = href.split('/')[1]; // Extract the first segment of the href path
+        var hrefPath = href.split('/')[1];
 
-        var currentPathSegments = path.split('/'); // Split the current path into segments
-        var currentPathFirstSegment = currentPathSegments[1]; // Get the first segment of the current path
+        var currentPathSegments = path.split('/');
+        var currentPathFirstSegment = currentPathSegments[1];
 
         if (currentPathFirstSegment === hrefPath) {
             $(this).addClass('active');
-            return false; // Exit the loop early if a match is found
+            return false;
         }
     });
 
+
+    //Funktion til knapperne ud for hver chat, på brugersiden. 
+    //Sender et ajax-kald til serveren, og modtager noget html.
     $(".view-messages-btn").click(function () {
         var chatId = $(this).data("chatid");
         var userId = $(this).data("userid");
@@ -24,17 +28,8 @@
         $.ajax({
             url: url,
             type: "GET",
-            dataType: "json",
             success: function (data) {
-                if (data !== null) {
-                    var html = "";
-                    for (var i = 0; i < data.length; i++) {
-                        html += "<p>" + data[i].MessageText + "</p>";
-                    }
-                    $("#messagesPartialViewContainer").html(html);
-                } else {
-                    $("#messagesPartialViewContainer").html("<p>No messages found.</p>");
-                }
+                $("#messagesPartialViewContainer").html(data);
             },
             error: function (xhr, status, error) {
                 console.log(error);

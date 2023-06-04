@@ -10,6 +10,8 @@ using Eksamensprojekt_Final_1_Web_App.ViewModels;
 
 namespace Eksamensprojekt_Final_1_Web_App.Controllers
 {
+
+    //HomeControlleren står for at vise siden med alle chats.
     public class HomeController : Controller
     {
 
